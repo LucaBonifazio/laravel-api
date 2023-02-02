@@ -5060,6 +5060,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'App',
@@ -5071,7 +5079,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
     axios.get('/api/posts').then(function (response) {
-      return _this.arrPosts = response.data.results;
+      return _this.arrPosts = response.data.result;
     });
   }
 });
@@ -11066,9 +11074,39 @@ var render = function () {
       _c("h1", [_vm._v("Homepage Frontoffice on Vue")]),
       _vm._v(" "),
       _c(
-        "ol",
+        "div",
+        { staticClass: "row g-3" },
         _vm._l(_vm.arrPosts, function (post) {
-          return _c("li", { key: post.id }, [_vm._v(_vm._s(post.title))])
+          return _c("div", { key: post.id, staticClass: "col-sm-6 col-md-4" }, [
+            _c("div", { staticClass: "card h-100" }, [
+              _c("img", {
+                staticClass: "card-img-top",
+                attrs: {
+                  src: "/storage/" + post.uploaded_img,
+                  alt: post.title,
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(post.title)),
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text flex-grow-1" }, [
+                  _vm._v(_vm._s(post.excerpt)),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { href: "/posts/" + post.slug },
+                  },
+                  [_vm._v("Leggi")]
+                ),
+              ]),
+            ]),
+          ])
         }),
         0
       ),
