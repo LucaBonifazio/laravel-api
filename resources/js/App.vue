@@ -10,7 +10,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text flex-grow-1">{{ post.excerpt }}</p>
-                            <a :href="'/posts/' + post.slug" class="btn btn-primary">Leggi</a>
+                            <a :href="'/posts/' + post.slug" class="btn btn-primary">Read</a>
                         </div>
                     </div>
                 </div>

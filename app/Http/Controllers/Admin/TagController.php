@@ -10,7 +10,7 @@ class TagController extends Controller
 {
     private $validation = [
         'name'         => 'string|required|max:100',
-        'slug'         => 'string|required|max:100'|'unique:tags',
+        'slug'         => 'string|required|max:100|unique:tags',
     ];
 
     /**
@@ -66,7 +66,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $posts = $tag->posts()->paginate(10);
+        $posts = $tag->posts()->get();
         return view('admin.tags.show', [
             'tag'       => $tag,
             'posts'     => $posts,

@@ -20,7 +20,7 @@ class PostController extends Controller
         'tags'         => 'array',
         'tags.*'       => 'integer|exists:tags,id',
         'image'        => 'url|max:100',
-        'upload_image' => 'image|max:1024',
+        'upload_image' => 'nullable|image|max:1024',
         'content'      => 'string',
         'excerpt'      => 'string',
     ];

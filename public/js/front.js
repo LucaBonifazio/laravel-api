@@ -11102,7 +11102,7 @@ var render = function () {
                     staticClass: "btn btn-primary",
                     attrs: { href: "/posts/" + post.slug },
                   },
-                  [_vm._v("Leggi")]
+                  [_vm._v("Read")]
                 ),
               ]),
             ]),
