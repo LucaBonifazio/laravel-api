@@ -81,7 +81,7 @@ class PostController extends Controller
         $post->excerpt       = $data['excerpt'];
         $post->save();
 
-        $post->tags()->attach($data['tags']);
+        //$post->tags()->attach($data['tags']);
 
         return redirect()->route('admin.posts.show', ['post' => $post]);
     }

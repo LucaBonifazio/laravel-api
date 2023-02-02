@@ -10,12 +10,6 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class CategoryController extends Controller
 {
-    private $validation = [
-        'name'         => 'string|required|max:100',
-        'slug'         => 'string|required|max:100',
-        'description'  => 'string|nullable',
-    ];
-
     /**
      * Display a listing of the resource.
      *
@@ -48,8 +42,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validation['slug'][] = 'unique:categories';
-        $request->validate($this->validation);
+        $request->validate([
+            'name'          => 'required|string|max:100',
+            'slug'          => 'required|string|max:100|unique:categories',
+            'description'   => 'nullable|string',
+        ]);
 
         $data = $request->all();
 
@@ -97,8 +94,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $this->validation['slug'][] = Rule::unique('categories')->ignore($category);
-        $request->validate($this->validation);
+        $request->validate([
+            'name'          => 'required|string|max:100',
+            'slug'          => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('categories')->ignore($category),
+            ],
+            'description'   => 'nullable|string',
+        ]);
 
         $data = $request->all();
 

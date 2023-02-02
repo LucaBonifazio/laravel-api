@@ -44,7 +44,15 @@
 
         <div class="mb-3">
             <label for="category_id" class="form-label">Category</label>
-            <input type="url" class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id" value="{{ old('category_id', $post->category->name) }}">
+            <select type="number" class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+                @foreach ($categories as $category)
+                    @if ($post->category->name == $category->name)
+                        <option selected="selected" value="{{ $category->id }}">{{ $category->name }}</option>
+                    @else
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endif
+                @endforeach
+            </select>
             @error('category_id')
                 <div class="invalid-feedback">
                     <ul>

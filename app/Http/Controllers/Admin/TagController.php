@@ -10,8 +10,9 @@ class TagController extends Controller
 {
     private $validation = [
         'name'         => 'string|required|max:100',
-        'slug'         => 'string|required|max:100',
+        'slug'         => 'string|required|max:100'|'unique:tags',
     ];
+
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +45,6 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validation['slug'][] = 'unique:tags';
         $request->validate($this->validation);
 
         $data = $request->all();
@@ -93,7 +93,6 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        $this->validation['slug'][] = 'unique:tags';
         $request->validate($this->validation);
 
         $data = $request->all();
