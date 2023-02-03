@@ -11081,10 +11081,7 @@ var render = function () {
             _c("div", { staticClass: "card h-100" }, [
               _c("img", {
                 staticClass: "card-img-top",
-                attrs: {
-                  src: "/storage/" + post.uploaded_img,
-                  alt: post.title,
-                },
+                attrs: { src: post.image, alt: post.title },
               }),
               _vm._v(" "),
               _c("div", { staticClass: "card-body d-flex flex-column" }, [
