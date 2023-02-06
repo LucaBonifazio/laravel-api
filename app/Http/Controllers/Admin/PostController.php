@@ -8,6 +8,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 
@@ -74,7 +75,7 @@ class PostController extends Controller
         $post = new Post;
         $post->slug          = $data['slug'];
         $post->title         = $data['title'];
-        $post->category_id  = $data['category_id'];
+        $post->category_id   = Auth::id();
         $post->image         = $data['image'];
         $post->uploaded_img  = $img_path;
         $post->content       = $data['content'];

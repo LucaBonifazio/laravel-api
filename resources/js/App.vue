@@ -1,27 +1,29 @@
 <template>
-    <section>
-        <div class="container">
-            <h1>Homepage Frontoffice on Vue</h1>
+    <div class="container">
+        <header>
+            <Navbar/>
+        </header>
 
-            <div class="row g-3">
-                <div v-for="post in arrPosts" :key="post.id" class="col-sm-6 col-md-4">
-                    <div class="card h-100">
-                        <img :src="post.image" class="card-img-top" :alt="post.title">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ post.title }}</h5>
-                            <p class="card-text flex-grow-1">{{ post.excerpt }}</p>
-                            <a :href="'/posts/' + post.slug" class="btn btn-primary">Read</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <main>
+            <router-view></router-view>
+        </main>
+
+        <footer>
+            <Footer/>
+        </footer>
+    </div>
 </template>
 
 <script>
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 export default {
   name: 'App',
+  components: {
+    Navbar,
+    Footer,
+  },
   data() {
     return {
         arrPosts: [],
@@ -36,5 +38,14 @@ export default {
 
 <style lang="scss">
     @import '~bootstrap/scss/bootstrap';
+
+    header,
+    footer {
+        height: 50px;
+    }
+
+    main {
+        height: calc(100vh - 100px);
+    }
 </style>
 
